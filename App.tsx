@@ -30,6 +30,7 @@ const ErrorDisplay: React.FC<{ message: string }> = ({ message }) => (
 const App: React.FC = () => {
   const { lang, setLang, t } = useTranslation();
   const [prompt, setPrompt] = useState<string>('');
+  const [customApiKey, setCustomApiKey] = useState<string>('');
   const [aspectRatio, setAspectRatio] = useState<string>('1:1');
   const [selectedModel, setSelectedModel] = useState<string>('imagen-4.0-generate-001');
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -96,7 +97,7 @@ const App: React.FC = () => {
         ? { data: uploadedImage.split(',')[1], mimeType: uploadedImageMimeType } 
         : undefined;
         
-      const base64Image = await generateImage(prompt, aspectRatio, selectedModel, imageToEdit);
+      const base64Image = await generateImage(prompt, aspectRatio, selectedModel, imageToEdit, customApiKey);
       const imageUrl = `data:image/png;base64,${base64Image}`;
       setGeneratedImage(imageUrl);
 
@@ -111,7 +112,7 @@ const App: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [prompt, aspectRatio, selectedModel, uploadedImage, uploadedImageMimeType, t]);
+  }, [prompt, aspectRatio, selectedModel, uploadedImage, uploadedImageMimeType, customApiKey, t]);
 
   const handleSavePrompt = (newPrompt: string) => {
     setPrompt(newPrompt);
@@ -190,6 +191,8 @@ const App: React.FC = () => {
          <PromptInput
             prompt={prompt}
             setPrompt={setPrompt}
+            customApiKey={customApiKey}
+            setCustomApiKey={setCustomApiKey}
             aspectRatio={aspectRatio}
             setAspectRatio={setAspectRatio}
             selectedModel={selectedModel}

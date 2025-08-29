@@ -2,10 +2,13 @@ import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { SpinnerIcon } from './icons/SpinnerIcon';
 import { UploadIcon } from './icons/UploadIcon';
 import { SaveIcon } from './icons/SaveIcon';
+import { KeyIcon } from './icons/KeyIcon';
 
 interface PromptInputProps {
   prompt: string;
   setPrompt: (prompt: string) => void;
+  customApiKey: string;
+  setCustomApiKey: (key: string) => void;
   aspectRatio: string;
   setAspectRatio: (ratio: string) => void;
   selectedModel: string;
@@ -169,6 +172,8 @@ const UploaderFrame = ({ onImageUpload, t }: UploaderFrameProps) => {
 const PromptInput = ({
   prompt,
   setPrompt,
+  customApiKey,
+  setCustomApiKey,
   aspectRatio,
   setAspectRatio,
   selectedModel,
@@ -236,6 +241,24 @@ const PromptInput = ({
             rows={rowsCount}
             readOnly={nanoOnMobile}
           />
+        </div>
+
+        <div>
+          <label htmlFor="api-key" className="block text-sm font-medium text-gray-300 mb-2">
+            {t('api_key_label')}
+          </label>
+          <div className="relative">
+            <KeyIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+            <input
+              id="api-key"
+              type="password"
+              value={customApiKey}
+              onChange={(e) => setCustomApiKey(e.target.value)}
+              placeholder={t('api_key_placeholder')}
+              className="w-full p-3 pl-10 bg-white/5 border border-white/10 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all"
+              disabled={isLoading}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
