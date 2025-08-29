@@ -75,6 +75,10 @@ export const generateImage = async (
         },
       });
       
+      if (response.candidates?.[0]?.finishReason === 'SAFETY') {
+        throw new Error('error_safety');
+      }
+
       for (const part of response.candidates?.[0]?.content?.parts ?? []) {
         if (part.inlineData) {
           return part.inlineData.data;
@@ -85,26 +89,41 @@ export const generateImage = async (
     throw new Error('error_no_images_returned');
 
   } catch (error) {
-    console.error('Error generating image with Gemini API:', error);
-
+    console.error('Gemini API Error:', error);
+    
+    // Default our known error types
     if (error instanceof Error) {
-        // Handle our custom errors which are already translation keys
-        if (error.message === 'error_api_key_not_configured' || 
-            error.message === 'error_prompt_or_image_required_for_edit' ||
-            error.message === 'error_no_images_returned') {
-            throw error; // Re-throw to be translated by the UI
-        }
+      if (error.message === 'error_api_key_not_configured' ||
+          error.message === 'error_prompt_or_image_required_for_edit' ||
+          error.message === 'error_no_images_returned' ||
+          error.message === 'error_safety') {
+        throw error; // Re-throw our custom internal errors
+      }
+    }
 
-        const errorMessage = error.message.toLowerCase();
+    const errorMessage = error instanceof Error ? error.message.toLowerCase() : '';
 
-        if (errorMessage.includes('429') || errorMessage.includes('quota') || errorMessage.includes('resource_exhausted')) {
-            throw new Error('error_quota');
-        }
-        if (errorMessage.includes('api') && errorMessage.includes('key')) {
-             throw new Error('error_api_key');
-        }
+    // Check for specific error messages from the Gemini API
+    if (errorMessage.includes('safety') || errorMessage.includes('policy')) {
+      throw new Error('error_safety');
+    }
+    if (errorMessage.includes('api key not valid') || errorMessage.includes('invalid api key')) {
+      throw new Error('error_api_key');
+    }
+    if (errorMessage.includes('billing')) {
+      throw new Error('error_billing');
+    }
+    if (errorMessage.includes('permission denied') || errorMessage.includes('api is not enabled')) {
+      throw new Error('error_permission');
+    }
+    if (errorMessage.includes('unsupported location')) {
+        throw new Error('error_location');
+    }
+    if (errorMessage.includes('429') || errorMessage.includes('quota') || errorMessage.includes('resource_exhausted')) {
+      throw new Error('error_quota');
     }
     
+    // Fallback to a generic error if no specific message is found
     throw new Error('error_generic');
   }
 };

@@ -41,10 +41,14 @@ export const translations = {
     loading_description: "Your image is being generated. This might take a moment.",
 
     // Errors
+    error_safety: "The request was blocked due to safety concerns. Please try a different prompt.",
+    error_billing: "Billing may not be enabled for your Google Cloud project. The Gemini API requires an active billing account.",
+    error_permission: "Permission denied. Please ensure the 'Generative Language API' or 'Vertex AI API' is enabled in your Google Cloud project.",
+    error_location: "Your region is not supported for this API at this time.",
     error_quota: "You have exceeded your API request quota. Please check your plan and billing details, or try again later.",
-    error_api_key: "The API key is invalid or has expired. Please check your configuration.",
+    error_api_key: "The API key is invalid or has expired. Please double-check it for typos or generate a new one.",
     error_api_key_not_configured: "API key not found. Please enter one above or configure the API_KEY environment variable in your hosting provider.",
-    error_generic: "Failed to generate image. The service may be busy or the prompt could be inappropriate. Please try again later.",
+    error_generic: "Failed to generate image. The service may be busy. Please try again later.",
     error_no_images_returned: "Image generation failed: No images were returned.",
     error_prompt_or_image_required: "Please enter a prompt or upload an image to generate.",
     error_prompt_or_image_required_for_edit: "A prompt or an image is required to generate a new image.",
@@ -94,10 +98,14 @@ export const translations = {
     loading_description: "Gambar Anda sedang dibuat. Ini mungkin perlu beberapa saat.",
     
     // Errors
+    error_safety: "Permintaan diblokir karena masalah keamanan. Silakan coba prompt yang berbeda.",
+    error_billing: "Penagihan (billing) mungkin belum diaktifkan untuk proyek Google Cloud Anda. API Gemini memerlukan akun penagihan yang aktif.",
+    error_permission: "Izin ditolak. Pastikan 'Generative Language API' atau 'Vertex AI API' telah diaktifkan di proyek Google Cloud Anda.",
+    error_location: "Wilayah Anda tidak didukung untuk API ini saat ini.",
     error_quota: "Anda telah melampaui kuota permintaan API Anda. Silakan periksa paket dan detail tagihan Anda, atau coba lagi nanti.",
-    error_api_key: "Kunci API tidak valid atau telah kedaluwarsa. Silakan periksa konfigurasi Anda.",
+    error_api_key: "Kunci API tidak valid atau telah kedaluwarsa. Silakan periksa kembali apakah ada salah ketik atau buat kunci baru.",
     error_api_key_not_configured: "Kunci API tidak ditemukan. Silakan masukkan di atas atau konfigurasikan environment variable API_KEY di penyedia hosting Anda.",
-    error_generic: "Gagal menghasilkan gambar. Layanan mungkin sibuk atau prompt tidak pantas. Silakan coba lagi nanti.",
+    error_generic: "Gagal menghasilkan gambar. Layanan mungkin sedang sibuk. Silakan coba lagi nanti.",
     error_no_images_returned: "Pembuatan gambar gagal: Tidak ada gambar yang dikembalikan.",
     error_prompt_or_image_required: "Silakan masukkan prompt atau unggah gambar untuk menghasilkan.",
     error_prompt_or_image_required_for_edit: "Prompt atau gambar diperlukan untuk menghasilkan gambar baru.",
