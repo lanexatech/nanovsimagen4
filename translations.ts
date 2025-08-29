@@ -8,7 +8,6 @@ export const translations = {
     after_label: "After",
     editing_instructions_label: "Editing Instructions",
     image_prompt_label: "Image Prompt",
-    api_key_label: "Custom API Key (Optional)",
     model_label: "Model",
     aspect_ratio_label: "Aspect Ratio",
 
@@ -16,7 +15,6 @@ export const translations = {
     prompt_placeholder_nano_mobile: "Click to describe your edits...",
     prompt_placeholder_nano_desktop: "e.g., add sunglasses, make the background a beach...",
     prompt_placeholder_imagen: "A futuristic cityscape at sunset, neon lights on wet streets...",
-    api_key_placeholder: "Enter your Gemini API key here",
 
     // Buttons & Actions
     generate_button: "Generate Image",
@@ -47,7 +45,7 @@ export const translations = {
     error_location: "Your region is not supported for this API at this time.",
     error_quota: "You have exceeded your API request quota. Please check your plan and billing details, or try again later.",
     error_api_key: "The API key is invalid or has expired. Please double-check it for typos or generate a new one.",
-    error_api_key_not_configured: "API key not found. Please enter one above or configure the API_KEY environment variable in your hosting provider.",
+    error_api_key_not_configured: "Application API key is not configured. Please set the API_KEY environment variable in your hosting provider.",
     error_generic: "Failed to generate image. The service may be busy. Please try again later.",
     error_no_images_returned: "Image generation failed: No images were returned.",
     error_prompt_or_image_required: "Please enter a prompt or upload an image to generate.",
@@ -65,7 +63,6 @@ export const translations = {
     after_label: "Sesudah",
     editing_instructions_label: "Instruksi Penyuntingan",
     image_prompt_label: "Prompt Gambar",
-    api_key_label: "Kunci API Kustom (Opsional)",
     model_label: "Model",
     aspect_ratio_label: "Rasio Aspek",
 
@@ -73,7 +70,6 @@ export const translations = {
     prompt_placeholder_nano_mobile: "Klik untuk mendeskripsikan editan Anda...",
     prompt_placeholder_nano_desktop: "cth: tambahkan kacamata, ubah latar jadi pantai...",
     prompt_placeholder_imagen: "Pemandangan kota futuristik saat senja, lampu neon di jalan basah...",
-    api_key_placeholder: "Masukkan kunci API Gemini Anda di sini",
 
     // Buttons & Actions
     generate_button: "Hasilkan Gambar",
@@ -104,7 +100,7 @@ export const translations = {
     error_location: "Wilayah Anda tidak didukung untuk API ini saat ini.",
     error_quota: "Anda telah melampaui kuota permintaan API Anda. Silakan periksa paket dan detail tagihan Anda, atau coba lagi nanti.",
     error_api_key: "Kunci API tidak valid atau telah kedaluwarsa. Silakan periksa kembali apakah ada salah ketik atau buat kunci baru.",
-    error_api_key_not_configured: "Kunci API tidak ditemukan. Silakan masukkan di atas atau konfigurasikan environment variable API_KEY di penyedia hosting Anda.",
+    error_api_key_not_configured: "Kunci API aplikasi tidak dikonfigurasi. Harap atur environment variable API_KEY di penyedia hosting Anda.",
     error_generic: "Gagal menghasilkan gambar. Layanan mungkin sedang sibuk. Silakan coba lagi nanti.",
     error_no_images_returned: "Pembuatan gambar gagal: Tidak ada gambar yang dikembalikan.",
     error_prompt_or_image_required: "Silakan masukkan prompt atau unggah gambar untuk menghasilkan.",

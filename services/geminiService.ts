@@ -5,14 +5,14 @@ interface ImageInput {
   mimeType: string;
 }
 
-const getAiClient = (customApiKey?: string): GoogleGenAI => {
-  const effectiveApiKey = customApiKey || process.env.API_KEY;
+const getAiClient = (): GoogleGenAI => {
+  const apiKey = process.env.API_KEY;
 
-  if (!effectiveApiKey) {
+  if (!apiKey) {
     throw new Error("error_api_key_not_configured");
   }
   
-  return new GoogleGenAI({ apiKey: effectiveApiKey });
+  return new GoogleGenAI({ apiKey: apiKey });
 };
 
 /**
@@ -21,18 +21,16 @@ const getAiClient = (customApiKey?: string): GoogleGenAI => {
  * @param aspectRatio The desired aspect ratio for the image (for supported models).
  * @param model The selected model for image generation.
  * @param image Optional image data for editing.
- * @param customApiKey Optional user-provided API key.
  * @returns A promise that resolves to the base64 encoded image string.
  */
 export const generateImage = async (
   prompt: string,
   aspectRatio: string,
   model: string,
-  image?: ImageInput,
-  customApiKey?: string
+  image?: ImageInput
 ): Promise<string> => {
   try {
-    const ai = getAiClient(customApiKey);
+    const ai = getAiClient();
     if (model === 'imagen-4.0-generate-001') {
       const response = await ai.models.generateImages({
         model: 'imagen-4.0-generate-001',
